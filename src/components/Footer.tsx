@@ -1,26 +1,36 @@
 const Footer = () => (
-  <footer className="bg-charcoal border-t border-primary-foreground/10 py-12 px-6">
-    <div className="container mx-auto text-center">
-      <p className="font-display text-2xl text-primary-foreground mb-2">
-        Trattoria <span className="text-gold italic">Valtenesi</span>
-      </p>
-      <p className="text-primary-foreground/40 font-body text-sm mb-6">
-        Via Pergola, 53 — 25080 Moniga del Garda BS — Tel. 0365 511345
-      </p>
-      <div className="flex justify-center gap-6 mb-6">
-        {["Home", "Menu", "Galleria", "Contatti"].map((l) => (
-          <a
-            key={l}
-            href={`#${l.toLowerCase() === "home" ? "home" : l.toLowerCase() === "contatti" ? "contact" : l.toLowerCase()}`}
-            className="text-primary-foreground/50 hover:text-gold text-sm tracking-wider uppercase font-body transition-colors"
-          >
-            {l}
-          </a>
-        ))}
+  <footer className="bg-background border-t border-border py-16 px-6">
+    <div className="container mx-auto">
+      <div className="text-center">
+        <p className="font-display text-3xl text-foreground mb-2">
+          Trattoria <span className="text-gold italic">Valtenesi</span>
+        </p>
+        <p className="text-muted-foreground font-body text-sm mb-8 max-w-md mx-auto">
+          Via Pergola, 53 — 25080 Moniga del Garda BS — Tel. 0365 511345
+        </p>
+        <div className="flex flex-wrap justify-center gap-8 mb-10">
+          {[
+            { label: "Home", href: "#home" },
+            { label: "Chi Siamo", href: "#about" },
+            { label: "Menu", href: "#menu" },
+            { label: "Galleria", href: "#gallery" },
+            { label: "Contatti", href: "#contact" },
+          ].map((l) => (
+            <a
+              key={l.label}
+              href={l.href}
+              className="text-muted-foreground hover:text-gold text-xs tracking-[0.2em] uppercase font-body font-bold transition-colors"
+            >
+              {l.label}
+            </a>
+          ))}
+        </div>
+        <div className="border-t border-border pt-8">
+          <p className="text-muted-foreground/50 text-xs font-body">
+            © {new Date().getFullYear()} Trattoria Pizzeria Valtenesi. Tutti i diritti riservati.
+          </p>
+        </div>
       </div>
-      <p className="text-primary-foreground/30 text-xs font-body">
-        © {new Date().getFullYear()} Trattoria Pizzeria Valtenesi. Tutti i diritti riservati.
-      </p>
     </div>
   </footer>
 );

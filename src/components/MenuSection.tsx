@@ -1,17 +1,15 @@
 import { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import pizzaImg from "@/assets/pizza.jpg";
-import pastaImg from "@/assets/pasta.jpg";
-import antipastiImg from "@/assets/antipasti.jpg";
-import dessertImg from "@/assets/dessert.jpg";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { ChevronRight } from "lucide-react";
 
-type Category = "antipasti" | "primi" | "pizze" | "dolci";
+type Category = "antipasti" | "primi" | "pizze" | "secondi" | "dolci";
 
-const categories: { key: Category; label: string; image: string }[] = [
-  { key: "antipasti", label: "Antipasti", image: antipastiImg },
-  { key: "primi", label: "Primi Piatti", image: pastaImg },
-  { key: "pizze", label: "Pizze", image: pizzaImg },
-  { key: "dolci", label: "Dolci", image: dessertImg },
+const categories: { key: Category; label: string }[] = [
+  { key: "antipasti", label: "Antipasti" },
+  { key: "primi", label: "Primi Piatti" },
+  { key: "pizze", label: "Pizze" },
+  { key: "secondi", label: "Secondi Piatti" },
+  { key: "dolci", label: "Dolci" },
 ];
 
 const menuItems: Record<Category, { name: string; desc: string; price: string }[]> = {
@@ -33,6 +31,12 @@ const menuItems: Record<Category, { name: string; desc: string; price: string }[
     { name: "Diavola", desc: "Salame piccante, peperoncino, mozzarella", price: "€10" },
     { name: "Quattro Stagioni", desc: "Carciofi, funghi, prosciutto, olive", price: "€11" },
   ],
+  secondi: [
+    { name: "Tagliata di Manzo", desc: "Rucola, parmigiano, aceto balsamico", price: "€18" },
+    { name: "Filetto di Branzino", desc: "Patate, olive, pomodorini", price: "€16" },
+    { name: "Scaloppine al Limone", desc: "Vitello, limone, capperi", price: "€15" },
+    { name: "Grigliata Mista", desc: "Carni alla griglia, verdure di stagione", price: "€20" },
+  ],
   dolci: [
     { name: "Tiramisù della Casa", desc: "Mascarpone, savoiardi, caffè espresso", price: "€7" },
     { name: "Panna Cotta", desc: "Vaniglia, coulis di frutti di bosco", price: "€6" },
@@ -42,84 +46,70 @@ const menuItems: Record<Category, { name: string; desc: string; price: string }[
 };
 
 const MenuSection = () => {
-  const [active, setActive] = useState<Category>("antipasti");
+  const [openCat, setOpenCat] = useState<Category | null>(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const activeCat = categories.find((c) => c.key === active)!;
-
   return (
-    <section id="menu" className="section-padding bg-charcoal" ref={ref}>
-      <div className="container mx-auto">
+    <section id="menu" className="section-padding bg-background" ref={ref}>
+      <div className="container mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-gold tracking-[0.3em] uppercase text-sm mb-4 font-body">Il Nostro</p>
-          <h2 className="font-display text-4xl md:text-5xl text-primary-foreground">Menu</h2>
+          <h2 className="font-display text-4xl md:text-6xl text-foreground">Il Nostro Menu</h2>
+          <p className="text-muted-foreground mt-4 font-body text-lg">
+            Scopri i sapori autentici della tradizione italiana
+          </p>
         </motion.div>
 
-        {/* Category tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+        <div className="divide-y divide-border">
           {categories.map((cat) => (
-            <button
-              key={cat.key}
-              onClick={() => setActive(cat.key)}
-              className={`px-6 py-3 text-sm tracking-widest uppercase font-body rounded-sm transition-all duration-300 ${
-                active === cat.key
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-transparent text-primary-foreground/60 border border-primary-foreground/20 hover:border-gold hover:text-gold"
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Menu content */}
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Image */}
-          <motion.div
-            key={active}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="relative overflow-hidden rounded-sm hidden lg:block"
-          >
-            <img
-              src={activeCat.image}
-              alt={activeCat.label}
-              className="w-full h-[500px] object-cover"
-              loading="lazy"
-              width={800}
-              height={800}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 to-transparent" />
-          </motion.div>
-
-          {/* Items */}
-          <motion.div
-            key={active + "-items"}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="space-y-0"
-          >
-            {menuItems[active].map((item, i) => (
-              <div
-                key={item.name}
-                className={`py-6 ${i !== menuItems[active].length - 1 ? "border-b border-primary-foreground/10" : ""}`}
+            <div key={cat.key}>
+              <button
+                onClick={() => setOpenCat(openCat === cat.key ? null : cat.key)}
+                className="w-full py-8 flex items-center justify-between group"
               >
-                <div className="flex justify-between items-baseline mb-2">
-                  <h3 className="font-display text-xl text-primary-foreground">{item.name}</h3>
-                  <span className="text-gold font-display text-lg ml-4">{item.price}</span>
-                </div>
-                <p className="text-primary-foreground/50 font-body text-sm">{item.desc}</p>
-              </div>
-            ))}
-          </motion.div>
+                <h3 className="font-display text-3xl md:text-5xl text-foreground group-hover:text-gold transition-colors duration-300 tracking-tight">
+                  {cat.label.toUpperCase()}
+                </h3>
+                <ChevronRight
+                  className={`w-8 h-8 text-muted-foreground group-hover:text-gold transition-all duration-300 ${
+                    openCat === cat.key ? "rotate-90" : ""
+                  }`}
+                />
+              </button>
+
+              <AnimatePresence>
+                {openCat === cat.key && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="pb-8 space-y-6">
+                      {menuItems[cat.key].map((item) => (
+                        <div
+                          key={item.name}
+                          className="flex justify-between items-start gap-4 pl-4 md:pl-8"
+                        >
+                          <div>
+                            <h4 className="font-display text-lg text-foreground">{item.name}</h4>
+                            <p className="text-muted-foreground font-body text-sm mt-1">{item.desc}</p>
+                          </div>
+                          <span className="text-gold font-display text-lg flex-shrink-0">{item.price}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
         </div>
       </div>
     </section>
