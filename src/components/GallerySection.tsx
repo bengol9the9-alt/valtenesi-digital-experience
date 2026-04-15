@@ -8,12 +8,12 @@ import dessertImg from "@/assets/dessert.jpg";
 import terraceImg from "@/assets/terrace.jpg";
 
 const images = [
-  { src: heroImg, alt: "Interno del ristorante", span: "col-span-2 row-span-2" },
-  { src: pizzaImg, alt: "Pizza margherita dal forno a legna", span: "" },
-  { src: dessertImg, alt: "Tiramisù fatto in casa", span: "" },
-  { src: terraceImg, alt: "Terrazza con vista lago", span: "col-span-2" },
-  { src: pastaImg, alt: "Tagliatelle ai funghi porcini", span: "" },
-  { src: antipastiImg, alt: "Antipasto della casa", span: "" },
+  { src: heroImg, alt: "Interno del ristorante", className: "md:col-span-2 md:row-span-2" },
+  { src: pizzaImg, alt: "Pizza margherita dal forno a legna", className: "" },
+  { src: dessertImg, alt: "Tiramisù fatto in casa", className: "" },
+  { src: pastaImg, alt: "Tagliatelle ai funghi porcini", className: "" },
+  { src: antipastiImg, alt: "Antipasto della casa", className: "" },
+  { src: terraceImg, alt: "Terrazza con vista lago", className: "md:col-span-2" },
 ];
 
 const GallerySection = () => {
