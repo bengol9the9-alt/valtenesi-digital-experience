@@ -35,19 +35,19 @@ const GallerySection = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[200px] md:auto-rows-[250px] gap-2 md:gap-3">
           {images.map((img, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`relative overflow-hidden group cursor-pointer ${img.span}`}
+              className={`relative overflow-hidden group cursor-pointer ${img.className}`}
             >
               <img
                 src={img.src}
                 alt={img.alt}
-                className="w-full h-full min-h-[200px] object-cover transition-transform duration-700 group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 loading="lazy"
                 width={800}
                 height={800}
