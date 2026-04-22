@@ -1,19 +1,19 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import heroImg from "@/assets/hero-restaurant.jpg";
-import pizzaImg from "@/assets/pizza.jpg";
-import pastaImg from "@/assets/pasta.jpg";
-import antipastiImg from "@/assets/antipasti.jpg";
-import dessertImg from "@/assets/dessert.jpg";
-import terraceImg from "@/assets/terrace.jpg";
+import esternoImg from "@/assets/gallery-esterno.png";
+import pizzaImg from "@/assets/gallery-pizza.png";
+import rigatoniImg from "@/assets/gallery-rigatoni.png";
+import paccheriImg from "@/assets/gallery-paccheri.png";
+import tagliatelleImg from "@/assets/gallery-tagliatelle.png";
+import bisteccaImg from "@/assets/gallery-bistecca.png";
 
 const images = [
-  { src: heroImg, alt: "Interno del ristorante", className: "md:col-span-2 md:row-span-2" },
+  { src: esternoImg, alt: "Esterno della trattoria Valtenesi", className: "md:col-span-2 md:row-span-2" },
   { src: pizzaImg, alt: "Pizza margherita dal forno a legna", className: "md:col-span-2" },
-  { src: dessertImg, alt: "Tiramisù fatto in casa", className: "" },
-  { src: pastaImg, alt: "Tagliatelle ai funghi porcini", className: "" },
-  { src: antipastiImg, alt: "Antipasto della casa", className: "md:col-span-2" },
-  { src: terraceImg, alt: "Terrazza con vista lago", className: "md:col-span-2" },
+  { src: rigatoniImg, alt: "Rigatoni al sugo", className: "" },
+  { src: tagliatelleImg, alt: "Tagliatelle al ragù", className: "" },
+  { src: paccheriImg, alt: "Paccheri con scampi", className: "md:col-span-2" },
+  { src: bisteccaImg, alt: "Bistecca alla griglia", className: "md:col-span-2" },
 ];
 
 const GallerySection = () => {
