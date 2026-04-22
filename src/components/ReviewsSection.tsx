@@ -4,45 +4,45 @@ import { Star } from "lucide-react";
 
 const reviews = [
   {
-    name: "Laura Bianchi",
-    flag: "🇮🇹",
-    country: "Italia",
-    text: "La migliore pizza del Garda! L'atmosfera è calda e accogliente, come a casa.",
+    name: "Federica DINI",
+    initial: "F",
+    meta: "Local Guide · 77 recensioni",
+    text: "Ottima pizza croccante con 30% di farina integrale, staff super gentile e dolcetto finale, semifreddo al caffè, delizioso. Pezzi onestissimi.",
     rating: 5,
   },
   {
-    name: "Thomas Müller",
-    flag: "🇩🇪",
-    country: "Germania",
-    text: "Hervorragend! Die Pasta war frisch und perfekt zubereitet. Ein Muss!",
+    name: "Silvia Negri",
+    initial: "S",
+    meta: "Local Guide · 81 recensioni",
+    text: "Buonissimi e gentilissimi, in chiusura ma serviti e riveriti carne ottima, verdure fresche, grazie! Siete una certezza!!",
     rating: 5,
   },
   {
-    name: "Sophie Dupont",
-    flag: "🇫🇷",
-    country: "Francia",
-    text: "Un vrai régal! Le tiramisù est le meilleur que j'ai jamais goûté.",
+    name: "marco ripa",
+    initial: "M",
+    meta: "Local Guide · 74 recensioni",
+    text: "Locale carino con servizio cordiale e veloce. Ci sono stato in pausa pranzo e mi è piaciuto molto. Ci tornerò.",
     rating: 5,
   },
   {
-    name: "James Smith",
-    flag: "🇬🇧",
-    country: "UK",
-    text: "Outstanding food and wine selection. The lake view terrace is magical.",
+    name: "Loretta Persavalli \"Lory\"",
+    initial: "L",
+    meta: "Local Guide · 43 recensioni",
+    text: "Ci siamo recati a cena per caso, ma devo dire che ritorneremo sicuramente, personale gentile e cibo ottimo.",
     rating: 5,
   },
   {
-    name: "Maria Gonzalez",
-    flag: "🇪🇸",
-    country: "Spagna",
-    text: "¡Increíble! Los sabores son auténticos. Volveremos seguro.",
+    name: "Elisa Borlenghi",
+    initial: "E",
+    meta: "6 recensioni",
+    text: "Prenotato all'ultimo per 12 persone. Ci siamo trovati molto bene! Abbiamo preso tutti pizze diverse davvero molto buone! Siamo stati serviti da due ragazzi giovani molto gentili. Parcheggio grande dedicato. Pizzeria consigliata!",
     rating: 5,
   },
   {
-    name: "Pieter van Dijk",
-    flag: "🇳🇱",
-    country: "Olanda",
-    text: "Geweldig restaurant! De risotto was perfect en de bediening uitstekend.",
+    name: "Giacomo Vezzoli",
+    initial: "G",
+    meta: "3 recensioni",
+    text: "Io e la mia compagna siamo stati a cena in questo posticino! Trattoria tipica e casereccia, qualità prezzo ok! Personale molto cordiale e giovane e giovanile. Quando siamo al lago verremo sempre qua. Grazie ragazzi.",
     rating: 5,
   },
 ];
@@ -84,12 +84,12 @@ const ReviewsSection = () => {
                 "{review.text}"
               </p>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-card rounded-full flex items-center justify-center text-lg">
-                  {review.flag}
+                <div className="w-10 h-10 bg-card rounded-full flex items-center justify-center text-base font-display text-gold">
+                  {review.initial}
                 </div>
                 <div>
                   <p className="text-foreground font-display text-sm">{review.name}</p>
-                  <p className="text-muted-foreground text-xs font-body">{review.country}</p>
+                  <p className="text-muted-foreground text-xs font-body">{review.meta}</p>
                 </div>
               </div>
             </motion.div>
