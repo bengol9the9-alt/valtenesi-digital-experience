@@ -1,10 +1,22 @@
 <!doctype html>
 <html lang="it">
   <head>
+    <script>
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trattoria Pizzeria Valtenesi | Moniga del Garda</title>
-    <meta name="description" content="Ristorante e pizzeria autentica a Moniga del Garda. Cucina tradizionale italiana, pizza dal forno a legna e vini del territorio. Prenota al 0365 511345." />
+    <meta name="description" content="Ristorante e pizzeria autentica a Moniga del Garda. Cucina tradizionale italiana, pizza dal forno a legna e vi" />
     <meta name="author" content="Trattoria Pizzeria Valtenesi" />
 
     <meta property="og:title" content="Trattoria Pizzeria Valtenesi | Moniga del Garda" />
